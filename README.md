@@ -1,18 +1,32 @@
 # BistroByte Infrastructure
 
-This repository contains infrastructure management code and configurations for the BistroByte project.
+This repository manages the infrastructure for the BistroByte restaurant management system using Terraform on AWS.
 
-## Overview
+## Structure
 
-The BistroByte infrastructure repository manages all cloud resources, deployment configurations, and infrastructure as code (IaC) needed to run BistroByte services.
+- `modules/` - Reusable Terraform modules
+  - `state/` - S3 bucket and DynamoDB table for Terraform state
+  - `ecr/` - Elastic Container Registry repositories
+- `state-setup/` - Deploys the Terraform state backend resources
+- `environments/` - Environment specific configurations
+  - `dev/`
+  - `prod/`
 
-## Purpose
+## Usage
 
-- Infrastructure as Code (IaC) management
-- Deployment configurations
-- Environment setup and maintenance
-- Resource provisioning
+1. **Initialize Terraform**
+   ```bash
+   terraform -chdir=state-setup init
+   ```
+2. **Apply state backend**
+   ```bash
+   terraform -chdir=state-setup apply
+   ```
+3. **Deploy an environment**
+   ```bash
+   terraform -chdir=environments/dev init
+   terraform -chdir=environments/dev apply
+   ```
+   Replace `dev` with `prod` for production.
 
-## Getting Started
-
-More details on setup and usage will be added as the project develops.
+These steps create the remote state storage and ECR repositories for each environment.
