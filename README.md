@@ -29,4 +29,3 @@ This repository manages the infrastructure for the BistroByte restaurant managem
    ```
    Replace `dev` with `prod` for production.
 
-These steps create the remote state storage and ECR repositories for each environment. The Terraform configuration defaults to the `eu-north-1` (Stockholm) region.
